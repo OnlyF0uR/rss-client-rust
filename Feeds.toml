@@ -1,0 +1,10 @@
+[[categories]]
+name = "youtube"
+sprawl = false
+aliases = ["yt"]
+
+# Feeds are displayed below
+[[feeds]]
+category = "youtube"
+url  = ""
+name = "test"
