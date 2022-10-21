@@ -7,7 +7,8 @@ struct FConfig {
     feeds: Vec<feeds::Feed>
 }
 
-fn main() {
+#[tokio::main]
+async fn main() {
     let cfg = read_config();
 
     let args: Vec<String> = std::env::args().collect();
@@ -21,7 +22,7 @@ fn main() {
     // First check if the entered data was a category
     for cat in &cfg.categories {
         if &cat.name == key_name {
-            feeds::display_category_feeds(&cat);
+            feeds::display_category_feeds(&cat).await;
             return;
         }
     }
@@ -29,7 +30,7 @@ fn main() {
     // Search for feeds if there was not a matching category
     for feed in &cfg.feeds {
         if &feed.name == key_name {
-            feeds::display_feed(&feed);
+            feeds::display_feed(&feed).await;
             return;
         }
     }
@@ -48,8 +49,8 @@ fn read_config() -> FConfig {
 
     let data: FConfig = match toml::from_str(&contents) {
         Ok(d) => d,
-        Err(e) => {
-            eprintln!("Could not load any data from the Feeds.toml file.");
+        Err(_) => {
+            eprintln!("Encountered an error while loading the Feeds.toml file, please review the content and syntax of your this file.");
             exit(1);
         }
     };

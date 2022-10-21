@@ -3,8 +3,8 @@ name = "youtube"
 sprawl = false
 aliases = ["yt"]
 
-# Feeds are displayed below
 [[feeds]]
 category = "youtube"
-url  = ""
-name = "test"
+url  = "https://www.youtube.com/feeds/videos.xml?channel_id=UCLA_DiR1FfKNvjuUpBHmylQ"
+name = "nasa"
+aliases = []

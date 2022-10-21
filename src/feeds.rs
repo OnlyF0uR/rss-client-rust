@@ -9,13 +9,21 @@ pub struct Category {
 pub struct Feed {
     category: String,
     url: String,
-    pub name: String
+    pub name: String,
+    aliases: Vec<String>
 }
 
-pub fn display_category_feeds(category: &Category) {
-
+pub async fn display_category_feeds(category: &Category) {
+    // ...
 }
 
-pub fn display_feed(feed: &Feed) {
+pub async fn display_feed(feed: &Feed) {
+    let content = reqwest::get(&feed.url)
+        .await.unwrap()
+        .text()
+        .await.unwrap();
 
+    println!("{:?}", &content);
+
+    // ....
 }
