@@ -1,7 +1,7 @@
 use std::process::exit;
 mod feeds;
 
-#[derive(Debug, serde_derive::Deserialize)]
+#[derive(serde_derive::Deserialize)]
 struct FConfig {
     categories: Vec<feeds::Category>,
     feeds: Vec<feeds::Feed>
@@ -9,7 +9,6 @@ struct FConfig {
 
 fn main() {
     let cfg = read_config();
-    println!("{:#?}", cfg);
 
     let args: Vec<String> = std::env::args().collect();
     if args.len() != 2 {
@@ -50,7 +49,6 @@ fn read_config() -> FConfig {
     let data: FConfig = match toml::from_str(&contents) {
         Ok(d) => d,
         Err(e) => {
-            print!("{}", e);
             eprintln!("Could not load any data from the Feeds.toml file.");
             exit(1);
         }

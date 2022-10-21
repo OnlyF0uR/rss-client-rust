@@ -1,11 +1,11 @@
-#[derive(Debug, serde_derive::Deserialize)]
+#[derive(serde_derive::Deserialize)]
 pub struct Category {
     pub name: String,
     sprawl: bool,
     aliases: Vec<String>
 }
 
-#[derive(Debug, serde_derive::Deserialize)]
+#[derive(serde_derive::Deserialize)]
 pub struct Feed {
     category: String,
     url: String,
